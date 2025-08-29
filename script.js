@@ -1,6 +1,6 @@
 const heartCount = document.getElementById("addHeart");
 const coinCount = document.getElementById("addCoin");
-let copyCount = document.querySelector(".addCopy");
+let copyCount = document.getElementById("addCopy");
 let AddCopy = parseInt(copyCount.textContent);
 const heart = document.querySelectorAll(".heart");
 const call = document.querySelectorAll(".call");

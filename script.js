@@ -1,0 +1,60 @@
+const heartCount = document.getElementById("addHeart");
+const coinCount = document.getElementById("addCoin");
+const copyCount = document.querySelector(".addCopy");
+const heart = document.querySelectorAll(".heart");
+const call = document.querySelectorAll(".call");
+const copy = document.querySelectorAll(".copy");
+const showMessage = document.getElementById("showMessage");
+const clear = document.getElementById("clear");
+
+let heartValue = 0;
+let coinValue = 100;
+let copyValue = 2;
+
+// Add heart:
+for (let i = 0; i < heart.length; i++) {
+  heart[i].addEventListener("click", function () {
+    heartValue++;
+    heartCount.innerText = heartValue;
+  });
+}
+
+// Call Buttons:
+for (let i = 0; i < call.length; i++) {
+  call[i].addEventListener("click", function () {
+    let card = call[i].parentElement.parentElement;
+    const serviceName = card.querySelector(".help-title").textContent;
+    const serviceNumber = card.querySelector(".help-number").textContent;
+
+    if (coinValue <= 20) {
+      alert("Not enough coins! Please recharge.");
+      return;
+    }
+    coinValue -= 20;
+    coinCount.innerText = coinValue;
+
+    alert("Calling-" + serviceName + `from +${serviceNumber}`);
+
+    // add history:
+    const time = new Date().toLocaleTimeString();
+    const div = document.createElement("div");
+    div.innerHTML =
+      `
+             <div class="flex items-center justify-between gap-2 bg-gray-100 rounded-lg px-3 py-2 mt-4 " >
+              <div>
+              <p class="text-[16px] font-semibold">${serviceName}</p>
+              <p class="text-[15px] text-gray-500">${serviceNumber}</p>
+            </div>
+            <p>${time}</p>
+           </div>
+
+
+          `;
+    showMessage.appendChild(div);
+  });
+}
+
+// copy btn:
+for(let i=0;i<copy.length;i++){
+  copy[i]
+}

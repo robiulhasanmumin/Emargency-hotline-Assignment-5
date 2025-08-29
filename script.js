@@ -1,6 +1,7 @@
 const heartCount = document.getElementById("addHeart");
 const coinCount = document.getElementById("addCoin");
-const copyCount = document.querySelector(".addCopy");
+let copyCount = document.querySelector(".addCopy");
+let AddCopy = parseInt(copyCount.textContent);
 const heart = document.querySelectorAll(".heart");
 const call = document.querySelectorAll(".call");
 const copy = document.querySelectorAll(".copy");
@@ -56,5 +57,21 @@ for (let i = 0; i < call.length; i++) {
 
 // copy btn:
 for(let i=0;i<copy.length;i++){
-  copy[i]
+  copy[i].addEventListener("click", function(){
+    let card = copy[i].parentElement.parentElement;
+    const serviceNumber = card.querySelector(".help-number").textContent;
+    navigator.clipboard.writeText(serviceNumber).then(function(){
+      alert("Copied: " + serviceNumber);
+    })
+    copyValue++;
+    AddCopy.textContent = copyValue;
+  })
 }
+
+// history clear:
+clear.addEventListener("click",function(){
+  const histoty = showMessage.querySelectorAll("div");
+  for(let i=0; i<histoty.length ; i++){
+    histoty[i].remove();
+  }
+})
